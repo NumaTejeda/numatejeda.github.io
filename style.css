@@ -3,10 +3,12 @@
     padding: 5px 0;
     box-sizing: border-box;
 }
+/*Saco los estilos por defeco de las estiquetas <a> y doy color a la letra*/
 a{
     text-decoration: none;
     color: rgb(119, 198, 212)
 }
+/*Centro el titulo*/
 h1{
     display: flex;
     justify-content: center;
@@ -14,16 +16,19 @@ h1{
     background-color: rgb(9, 127, 148);
     border-radius: 5px;
 }
+/*Cree una clase para centrar elementos*/
 .centrar{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+/*doy formato al main*/
 main{
     background-color: rgb(60, 113, 122);
     margin: 7px 10px;
     border-radius: 5px;
 }
+/*doy formato al nav*/
 nav{
     margin: 0 10px;
     border-radius: 5px;
@@ -32,35 +37,41 @@ nav{
 article{
     width: 500px;
 }
+/*doy formato a los botones del nav*/
 button{
     padding: 2px 5px;
     background-color: darkslategray;
     border-radius: 5px;
 }
+/*cambio el background cuando paso el mouse por arriba*/
 button:hover{
     background-color: brown;
 }
+/*doy formato al <ul> del footer*/
 #main-foot{
     background-color: rgb(12, 58, 66);
     margin: 0 10px;
     border-radius: 5px;
 }
+/*creo una clase para alinear horizontalmente, dar espacio alrededor y centrar en la pagina a los elementos que contenga */
 .alinear{
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
+/*saqué los estilos de las etiquetas <li>,hijas del elemento padre que tiene como clase .alinear*/
 .alinear>li{
     list-style: none;
 }
+/*altura y ancho de imagen*/
 img{
     height: 100%;
     width: 700px;
-    border-radius: 5px;
 }
 figcaption{
     padding: 10px 0;
 }
+/*altura y ancho de video*/
 video{
     height: 100%;
     width: 700px;
@@ -68,6 +79,7 @@ video{
 figure{
     border-radius: 5px;
 }
+/*intento de hacerlo responsivo*/
 @media only screen and (max-width: 760px) {
     img{
         height: 100%;
