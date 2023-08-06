@@ -1,0 +1,38 @@
+*{
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
+.calculadora{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 10px;
+    width: fit-content;
+}
+.calc-element{
+    margin: 10px;
+}
+.botones{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+button{
+    background-color: blue;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.leyenda{
+    border: 1px dashed black;
+    border-radius: 5px;
+    width: 100%;
+    height: 20px;
+    margin: 0 auto;
+}
