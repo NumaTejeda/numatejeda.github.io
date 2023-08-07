@@ -9,14 +9,14 @@
 <body>
     <h1>Calculadora</h1>
     <div class="calculadora">
-        <input type="text" name="number1" class="number1 calc-element" placeholder="Operando 1">
+        <input type="text" name="number1" class="number1 calc-element" id="number1" placeholder="Operando 1">
         <div class="selector calc-element">
             <label for="operacion">Operacion: </label>
-            <select name="operacion" id="operacion">
-                <option value="suma">+</option>
-                <option value="resta">-</option>
-                <option value="division">/</option>
-                <option value="multiplicacion">x</option>
+            <select id="operacion" name="operacion" class="operacion">
+                <option value="suma">+ (suma)</option>
+                <option value="resta">- (resta)</option>
+                <option value="division">/ (division)</option>
+                <option value="multiplicacion">x (multiplicacion)</option>
             </select>
         </div>
         <input type="text" name="number2" class="number2 calc-element" placeholder="Operando 2">
@@ -26,10 +26,7 @@
         </div>
         <p class="leyenda calc-element"></p>
     </div>
-    
-
-
-
-    <script src="/calcualdora/script.js"></script>
+    <!-- <script src="./program.js"></script> -->
+    <script type="module" src="./index.js"></script>
 </body>
 </html>

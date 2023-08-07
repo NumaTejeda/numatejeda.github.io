@@ -19,6 +19,9 @@ h1{
 .calc-element{
     margin: 10px;
 }
+select{
+    width: 100%;;
+}
 .botones{
     display: flex;
     align-items: center;
