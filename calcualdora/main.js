@@ -7,27 +7,33 @@ function calcular(){
     let num1 = Number(document.getElementById("number1").value);
     let num2 = Number(document.getElementById("number2").value);
     let valorSelect = document.getElementById("operacion").value;
-    let resultado = 0;
-    switch(valorSelect){
-        case "suma": 
-            resultado = suma(num1, num2);
-            break;
-        case "resta":
-            resultado = resta(num1, num2);
-            break;
-        case "division":
-            resultado = division(num1, num2);
-            break;
-        case "multiplicacion":
-            resultado = multiplicacion(num1, num2);
-            break;
+    let resultado = "";
+    if(isNaN(num1) || isNaN(num2)){
+        return document.getElementById("resultado").innerHTML = "ERROR! Verifica los campos ingresados y asegurate de que hayas ingresado un numero.";
     }
-    return document.getElementById("resultado").innerHTML = "El resultado es: " + resultado;
+    else{
+        switch(valorSelect){
+            case "suma": 
+                resultado = suma(num1, num2);
+                break;
+            case "resta":
+                resultado = resta(num1, num2);
+                break;
+            case "division":
+                resultado = division(num1, num2);
+                break;
+            case "multiplicacion":
+                resultado = multiplicacion(num1, num2);
+                break;
+        }
+        return document.getElementById("resultado").innerHTML = resultado;
+    }
 }
 function resetValue(){
     return document.getElementById("number1").value = "",
     document.getElementById("number2").value = "",
-    document.getElementById("operacion").value = "suma";
+    document.getElementById("operacion").value = "suma",
+    document.getElementById("resultado").innerHTML = "";
 }
 // export {suma, resta, division, multiplicacion};
 
