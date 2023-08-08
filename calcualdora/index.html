@@ -10,7 +10,7 @@
     <h1>Calculadora</h1>
     <div class="calculadora">
         <!--Ingreso del primer operando-->
-        <input type="text" name="number1" class="calc-element" id="number1" placeholder="Operando 1" oninput="catchErrorNum1()">
+        <input type="text" name="number1" class="calc-element" id="number1" placeholder="Operando 1" oninput="catchErrorNum1()" maxlength="15">
         <p id="errorNum1" style="display: none;"><b>ERROR! Solo numeros.</b></p><!--Mensaje de error oculto-->
         <!--Seleccion de operacion-->
         <div class="calc-element">
@@ -23,8 +23,9 @@
             </select>
         </div>
         <!--Ingreso del segundo-->
-        <input type="text" name="number2" class="calc-element" placeholder="Operando 2" id="number2" oninput="catchErrorNum2()">
+        <input type="text" name="number2" class="calc-element" placeholder="Operando 2" id="number2" oninput="catchErrorNum2()" maxlength="15">
         <p id="errorNum2" style="display: none;"><b>ERROR! Solo numeros.</b></p> <!--Mensaje de error oculto-->
+        <p id="errorNum2Cero" style="display: none;"><b>CUIDADO!</b></p> <!--Mensaje de error oculto division por cero-->
         <!--botones CALCULAR Y RESET-->
         <div class="botones calc-element">
             <button class="calcular" onclick="calcular()"><b>Calcular</b></button>

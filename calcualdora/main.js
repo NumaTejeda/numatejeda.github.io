@@ -13,11 +13,11 @@ function calcular(){
     let resultado = "";
     if(isNaN(num1) || isNaN(num2)){  // Manejo de error
         return document.getElementById("resultado").innerHTML = "ERROR! Verifica los campos ingresados.",
-        document.getElementById("resultado").style.color = "red";
+               document.getElementById("resultado").style.color = "red";
     }
-    else if(num2 === 0){
+    else if(num2 === 0 && valorSelect ==="division"){
         return document.getElementById("resultado").innerHTML = "ERROR! No se puede dividir por cero.",
-        document.getElementById("resultado").style.color = "red";
+               document.getElementById("resultado").style.color = "red";
     }
     else{
         switch(valorSelect){  //comparo valor del select y segun el caso aplico la funcion correspondiente. 
@@ -42,7 +42,6 @@ function calcular(){
 function resetValue(){
     return document.getElementById("number1").value = "",
     document.getElementById("number2").value = "",
-    document.getElementById("operacion").value = "suma",
     document.getElementById("resultado").innerHTML = "",
     document.getElementById("errorNum1").style.display = "none",
     document.getElementById("errorNum2").style.display = "none";
@@ -61,12 +60,12 @@ function catchErrorNum1(){
 //Igual que el anterior pero para el segundo input.
 function catchErrorNum2(){
     let num2 = Number(document.getElementById("number2").value);
+    let valorSelect = document.getElementById("operacion").value;
     if(isNaN(num2)){
         return document.getElementById("errorNum2").style.display = "block";
     }
     else{
         return document.getElementById("errorNum2").style.display = "none";
-        
     }
 }
 
