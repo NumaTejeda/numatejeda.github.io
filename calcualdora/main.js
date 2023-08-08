@@ -15,6 +15,10 @@ function calcular(){
         return document.getElementById("resultado").innerHTML = "ERROR! Verifica los campos ingresados.",
         document.getElementById("resultado").style.color = "red";
     }
+    else if(num2 === 0){
+        return document.getElementById("resultado").innerHTML = "ERROR! No se puede dividir por cero.",
+        document.getElementById("resultado").style.color = "red";
+    }
     else{
         switch(valorSelect){  //comparo valor del select y segun el caso aplico la funcion correspondiente. 
             case "suma": 
@@ -31,7 +35,7 @@ function calcular(){
                 break;
         }
         return document.getElementById("resultado").innerHTML = resultado,
-        document.getElementById("resultado").style.color = "black"; // devulevo resultado dentro del <p> con id "resultado".
+        document.getElementById("resultado").style=  "color: black"; // devulevo resultado dentro del <p> con id "resultado".
     }
 }
 // Funcion de boton reste: restauros los valores pode defecto. 
