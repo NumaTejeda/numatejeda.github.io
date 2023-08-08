@@ -60,7 +60,6 @@ function catchErrorNum1(){
 //Igual que el anterior pero para el segundo input.
 function catchErrorNum2(){
     let num2 = Number(document.getElementById("number2").value);
-    let valorSelect = document.getElementById("operacion").value;
     if(isNaN(num2)){
         return document.getElementById("errorNum2").style.display = "block";
     }
