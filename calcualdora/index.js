@@ -1,13 +1,29 @@
-const suma = (num1, num2) => {return num1 + num2};
-const resta = (num1, num2) => {return num1 - num2};
-const division = (num1, num2) => {return num1 / num2};
-const multiplicacion = (num1, num2) => {return num1 * num2};
+let suma = (num1, num2) => {return num1 + num2};
+let resta = (num1, num2) => {return num1 - num2};
+let division = (num1, num2) => {return num1 / num2};
+let multiplicacion = (num1, num2) => {return num1 * num2};
 
-const num1 = document.getElementById("number1");
-const num2 = document.getElementById("number2");
-const valorSelect = document.getElementById("operacion").value;
-
-console.log(suma(2, 4));
+function calcular(){
+    let num1 = Number(document.getElementById("number1").value);
+    let num2 = Number(document.getElementById("number2").value);
+    let valorSelect = document.getElementById("operacion").value;
+    let resultado = 0;
+    switch(valorSelect){
+        case "suma": 
+            resultado = suma(num1, num2);
+            break;
+        case "resta":
+            resultado = resta(num1, num2);
+            break;
+        case "division":
+            resultado = division(num1, num2);
+            break;
+        case "multiplicacion":
+            resultado = multiplicacion(num1, num2);
+            break;
+    }
+    return document.getElementById("resultado").innerHTML = resultado;
+}
 
 // export {suma, resta, division, multiplicacion};
 

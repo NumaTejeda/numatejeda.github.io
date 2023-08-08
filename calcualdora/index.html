@@ -11,7 +11,7 @@
     <div class="calculadora">
         <input type="text" name="number1" class="number1 calc-element" id="number1" placeholder="Operando 1">
         <div class="selector calc-element">
-            <label for="operacion">Operacion: </label>
+            <label for="operacion"><b>Opracion: </b></label>
             <select id="operacion" name="operacion" class="operacion">
                 <option value="suma">+ (suma)</option>
                 <option value="resta">- (resta)</option>
@@ -19,14 +19,14 @@
                 <option value="multiplicacion">x (multiplicacion)</option>
             </select>
         </div>
-        <input type="text" name="number2" class="number2 calc-element" placeholder="Operando 2">
+        <input type="text" name="number2" class="number2 calc-element" placeholder="Operando 2" id="number2">
         <div class="botones calc-element">
-            <button class="calcular">Calcular</button>
-            <button class="reset">Reset</button>
+            <button class="calcular" onclick="calcular()"><b>Calcular</b></button>
+            <button class="reset"><b>Reset</b></button>
         </div>
-        <p class="leyenda calc-element"></p>
+        <p class="leyenda calc-element" id="resultado"></p>
     </div>
     <!-- <script src="./program.js"></script> -->
-    <script type="module" src="./index.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
