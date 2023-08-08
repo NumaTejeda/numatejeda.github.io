@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,12 @@
 <body>
     <h1>Calculadora</h1>
     <div class="calculadora">
-        <input type="text" name="number1" class="number1 calc-element" id="number1" placeholder="Operando 1">
-        <div class="selector calc-element">
-            <label for="operacion"><b>Opracion: </b></label>
+        <!--Ingreso del primer operando-->
+        <input type="text" name="number1" class="calc-element" id="number1" placeholder="Operando 1" oninput="catchErrorNum1()">
+        <p id="errorNum1" style="display: none;"><b>ERROR! Solo numeros.</b></p><!--Mensaje de error oculto-->
+        <!--Seleccion de operacion-->
+        <div class="calc-element">
+            <label for="operacion"><b>Operación: </b></label>
             <select id="operacion" name="operacion" class="operacion">
                 <option value="suma">+ (suma)</option>
                 <option value="resta">- (resta)</option>
@@ -19,7 +22,10 @@
                 <option value="multiplicacion">x (multiplicacion)</option>
             </select>
         </div>
-        <input type="text" name="number2" class="number2 calc-element" placeholder="Operando 2" id="number2">
+        <!--Ingreso del segundo-->
+        <input type="text" name="number2" class="calc-element" placeholder="Operando 2" id="number2" oninput="catchErrorNum2()">
+        <p id="errorNum2" style="display: none;"><b>ERROR! Solo numeros.</b></p> <!--Mensaje de error oculto-->
+        <!--botones CALCULAR Y RESET-->
         <div class="botones calc-element">
             <button class="calcular" onclick="calcular()"><b>Calcular</b></button>
             <button onclick="resetValue()" ><b>Reset</b></button>
@@ -28,7 +34,6 @@
         </div>
         <p class="leyenda calc-element" id="resultado"></p>
     </div>
-    <!-- <script src="./program.js"></script> -->
     <script src="./main.js"></script>
 </body>
 </html>
