@@ -24,6 +24,10 @@ function calcular(){
     }
     return document.getElementById("resultado").innerHTML = "El resultado es: " + resultado;
 }
-
+function resetValue(){
+    return document.getElementById("number1").value = "",
+    document.getElementById("number2").value = "",
+    document.getElementById("operacion").value = "suma";
+}
 // export {suma, resta, division, multiplicacion};
 

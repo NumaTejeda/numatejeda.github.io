@@ -50,7 +50,7 @@ select{
     align-items: center;
     justify-content: space-around;
 }
-.boton{
+button{
     border: none;
     border-radius: 5px;
     padding: 5px 0px;
@@ -59,7 +59,7 @@ select{
     cursor: pointer;
     transition: all 500ms ease-out;
 }
-.boton:hover{
+button:hover{
     background-color: aquamarine;
     padding: 7px 2px;
     border: 1px solid rgb(30, 156, 25);
