@@ -22,7 +22,7 @@ function calcular(){
             resultado = multiplicacion(num1, num2);
             break;
     }
-    return document.getElementById("resultado").innerHTML = resultado;
+    return document.getElementById("resultado").innerHTML = "El resultado es: " + resultado;
 }
 
 // export {suma, resta, division, multiplicacion};
