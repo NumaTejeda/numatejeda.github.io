@@ -3,10 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    display: flex;
+}
 /* Centrado de titulo  */
 h1{
     display: flex;
     justify-content: center;
+    margin-top: 0;
+    color:#3ac798;
+    text-shadow: 1px 0px 2px black
 }
 option{
     background-color: rgb(239 225 225);
@@ -32,7 +38,8 @@ input:focus{
     border-radius: 10px;
     margin: 20px auto;
     padding: 10px;
-    width: 240px;
+    width: 260px;
+    min-width: 224px;
     background-color: rgb(239 225 225);
 }
 .calc-element{
@@ -64,7 +71,6 @@ button{
 }
 button:hover{
     background-color: aquamarine;
-    padding: 7px 2px;
     border: 1px rgb(30, 156, 25);
 }
 .leyenda{
@@ -73,9 +79,11 @@ button:hover{
     background-color:rgb(255 237 237);
     border-radius: 5px;
     padding: 10px;
-    width: 100%;
+    width: fit-content;
     height: fit-content;
     min-height: 50px;
+    max-width: 100%;
+    min-width: 100%;
     margin: 0 auto;
     color:black;
     justify-content: center;

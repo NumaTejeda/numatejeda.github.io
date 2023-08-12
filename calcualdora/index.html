@@ -7,8 +7,8 @@
     <title>Calculadora</title>
 </head>
 <body>
-    <h1>Calculadora</h1>
     <div class="calculadora">
+        <h1>Calculadora</h1>
         <!--Ingreso del primer operando-->
         <input type="text" name="number1" class="calc-element" id="number1" placeholder="Operando 1" oninput="catchErrorNum1()" maxlength="15">
         <p id="errorNum1" style="display: none;"><b>ERROR! Solo numeros.</b></p><!--Mensaje de error oculto-->
@@ -30,10 +30,10 @@
         <div class="botones calc-element">
             <button class="calcular" onclick="calcular()"><b>Calcular</b></button>
             <button onclick="resetValue()" ><b>Reset</b></button>
-            <!-- <input type="submit" value="Calcular" onclick="calcular()" class="boton">
-            <input type="reset" value="Reset" class="boton" onclick="resetValue()"> -->
         </div>
-        <p class="leyenda calc-element" id="resultado"></p>
+        
+            <p class="leyenda calc-element" id="resultado"></p>
+        
     </div>
     <script src="./main.js"></script>
 </body>
