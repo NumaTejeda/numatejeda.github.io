@@ -5,6 +5,7 @@
 }
 body{
     display: flex;
+    background-color: #4fa588;
 }
 /* Centrado de titulo  */
 h1{
