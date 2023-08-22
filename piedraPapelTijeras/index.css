@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px;
+}
+
+h3{
+    width: fit-content;
+    margin: 0 auto;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    border: 2px dashed red;
+    width: fit-content;
+    max-width: 388px;
+    min-width: 300px;
+    min-height: 500px;
+}
+#info{
+    display: flex;
+    flex-direction: column;
+}
+#info button{
+    margin: 1vh 0;  
+}
+#choise{
+    display: flex;
+    justify-content: center;
+    max-width: 364px;
+}
+.botones{
+    width: 17vw;
+    min-width: 90px;
+}
+#choise button:nth-child(2){
+    margin: 0 1vw;
+}
+#pantalla{
+    border: 1px solid green;
+    height: 20vh;
+    margin: 0 5px;
+}

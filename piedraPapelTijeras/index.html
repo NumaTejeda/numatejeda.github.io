@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Game</title>
+</head>
+<body>
+    <div class="box">
+        <h3 id="title">Piedra Pepel o Tijeras.</h3>
+        <div id="info">
+            <label for="name">Nombre de usuario:</label>
+            <input type="text" name="name" id="name" placeholder="Your name here..." autocomplete="name">
+            <p id="error" style="display: none; color: red;">Campo obligatorio 👆</p>
+            <button id="start">Start</button>
+        </div>
+        <div id="choise">
+            <button class="botones" id="piedra">
+                Piedra
+            </button>
+            <button class="botones" id="papel">
+                Papel
+            </button>
+            <button class="botones" id="tijera">
+                Tijera
+            </button>
+        </div>
+        <div id="pantalla">
+            <p id="resultado"></p>
+        </div>
+        <div class="hide">
+            <button class="reset" style="width: 100%;">Reset</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
