@@ -1,23 +1,21 @@
-const OPCIONES = ["PIEDRA", "PAPEL", "TIJERA"];
-let USER_NAME;
-const MOVE_PC = jugadaPC();
-const SCORE_PC = 0;
-const SCORE_USUARIO = 0;
-let userChoice = "";
-
-
-
-
+let PIEDRA = "Piedra";
+let PAPEL = "Papel";
+let TIJERA = "Tijera";
+let OPCIONES = [PIEDRA, PAPEL, TIJERA];
+const BOTONES = document.querySelectorAll('.botones');
 const ERROR = document.getElementById("error");
 const START_BUTTON = document.getElementById("start");
+const RESULTADO = document.getElementById("resultado");
+let posiblesResultados = ["Empate!", "Gana el usuario!", "Gana la computadora!"];
+let PC_PLAY;
+let SCORE_PC = 0;
+let SCORE_USUARIO = 0;
+let USER_NAME;
+let USER_PLAY;
 
-
-
-START_BUTTON.addEventListener("click", catchName);
-
-function catchName(){// falta mostrarlo en pantalla
+function catchName(){// falta mostrarlo en RESULTADO
     USER_NAME = document.getElementById("name").value;
-    const buscar = /[A-Za-z1-9]/;                      
+    const buscar = /[A-Za-z1-9]/;             
     let busqueda = buscar.test(USER_NAME);
     if(busqueda === true){
         USER_NAME = USER_NAME.trim();
@@ -26,6 +24,9 @@ function catchName(){// falta mostrarlo en pantalla
     return ERROR.style.display = "block";
 }
 
+START_BUTTON.addEventListener("click", catchName);
+START_BUTTON.addEventListener("click", function(){determinarGanador(USER_PLAY)});
+
 function reset(){// DEJALO PARA LO ULTIMO NO TE MATES
     return;
 }
@@ -33,40 +34,10 @@ function jugadaPC(){
     return OPCIONES[Math.floor(Math.random() * 3)];
 };
 function eleccionJugador(boton){
-    userChoice = boton.innerText;
-    return console.log(userChoice);
+    USER_PLAY = boton.innerText;
+    return USER_PLAY;
 }
-document.querySelectorAll('.botones').forEach((boton) => {
-   boton.addEventListener('click', (event) => eleccionJugador(event.target));
-});
-
-if(userChoice == "tijera" && MOVE_PC){
-    console.log("Gano PC")
-}
-else{
-    console.log("GAno usuario!")
-}
-
-
-// function eleccionJugador(boton){
-//     let id = boton.id;
-//     choiseUser = document.getElementById(id).innerText;
-//     return console.log(choiseUser);
-// }
-// botones.addEventListener("click", function(){
-//     eleccionJugador(this);
-// });
-
-// "click",modifyText.bind(null,"four")
-
-//acceder desd elemento padre a los elementos hijos a traves del id
-
-// let botones = document.querySelectorAll(".botones");
-
-// const cuandoHaceClick = function (evento){
-//     console.log("Eltexto que tiene es: ", this.innerText)
-// }
-// botones.forEach(boton => boton.addEventListener("click", this.eleccionJugador()));
+BOTONES.forEach((boton) => {boton.addEventListener('click', (event) => eleccionJugador(event.target))});
 
 // window.onload = function(){
 //     var test =document.querySelectorAll('.botones')
@@ -75,7 +46,42 @@ else{
 //     }
 // }
 
+function determinarGanador(USER_PLAY){  
+    PC_PLAY = jugadaPC();
+    console.log(USER_PLAY + " " + PC_PLAY);  
+    if(PC_PLAY === USER_PLAY){
+        // aca puedo ir sumando los score
+        return  RESULTADO.innerText = posiblesResultados[0];
+    }
+    else if(PC_PLAY === PAPEL &&  USER_PLAY === PIEDRA){
+        SCORE_PC += 1;
+        return  RESULTADO.innerText = posiblesResultados[2];
+    }
+    else if(PC_PLAY === PIEDRA && USER_PLAY === PAPEL){
+        SCORE_USUARIO += 1;
+        return  RESULTADO.innerText = posiblesResultados[1];
+    }
+    else if(PC_PLAY === TIJERA && USER_PLAY === PAPEL){
+        SCORE_PC += 1;
+        return  RESULTADO.innerText = posiblesResultados[2];
+    }
+    else if(PC_PLAY === PAPEL && USER_PLAY === TIJERA){
+        SCORE_USUARIO += 1;
+        return  RESULTADO.innerText = posiblesResultados[1];
+    }
+    else if(PC_PLAY === PIEDRA && USER_PLAY === TIJERA){
+        SCORE_PC += 1;
+        return  RESULTADO.innerText = posiblesResultados[2];
+    }
+    else{
+        SCORE_USUARIO += 1;
+        return RESULTADO.innerText = posiblesResultados[1];
+    }
+}
 
+if(SCORE_PC === 3 || SCORE_USUARIO === 3){
+    
+}
 
 
 
