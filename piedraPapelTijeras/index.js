@@ -17,7 +17,8 @@ let USER_PLAY;
 
 
 function jugadaPC(){
-    return OPCIONES[Math.floor(Math.random() * 3)];
+    PC_PLAY = OPCIONES[Math.floor(Math.random() * 3)];
+    return PC_PLAY;
 };
 function reset(){
     BOTONES.forEach(boton => boton.disabled = true);
@@ -30,11 +31,15 @@ function reset(){
     USER_NAME = "";
     return;
 }
+RESET_BUTTON.addEventListener("click", reset);
+
 function eleccionJugador(boton){
     USER_PLAY = boton.innerText;
     PLAY_BUTTON.disabled = false;
     return USER_PLAY;
 }
+BOTONES.forEach((boton) => {boton.addEventListener('click', (event) => eleccionJugador(event.target))});
+
 function errorName(){
     USER_NAME = document.getElementById("name").value;
     const buscar = /[A-Za-z1-9]/;             
@@ -47,44 +52,58 @@ function errorName(){
     CONTIUNUE_BUTTON.disabled = true;
     return ERROR.style.display = "block";
 }
+INPUT.addEventListener("input", errorName)
+
 function continuar(){
     BOTONES.forEach(boton => boton.disabled = false);
     CONTIUNUE_BUTTON.disabled = true;
     return;
 }
+CONTIUNUE_BUTTON.addEventListener("click", continuar);
+
 function resultadoParcial(){
-     if(PC_PLAY === USER_PLAY){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[0];
+    if(PC_PLAY === USER_PLAY){
+        return  RESULTADO.innerText = "UPS! " + POSIBLES_RESULTADOS[0];
     }
     else if(PC_PLAY === PAPEL &&  USER_PLAY === PIEDRA){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[2], SCORE_PC += 1,
+        SCORE_PC += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
         console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO); 
+        return;
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === PAPEL){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[1], SCORE_USUARIO += 1, 
+        SCORE_USUARIO += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`; 
         console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        return;
     }
     else if(PC_PLAY === TIJERA && USER_PLAY === PAPEL){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[2], SCORE_PC += 1, 
+        SCORE_PC += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`; 
         console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        return;
     }  
     else if(PC_PLAY === PAPEL && USER_PLAY === TIJERA){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[1], SCORE_USUARIO += 1, 
+        SCORE_USUARIO += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
         console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        return;
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === TIJERA){
-        return  RESULTADO.innerText = POSIBLES_RESULTADOS[2],  SCORE_PC += 1, 
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);;
+        SCORE_PC += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
+        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        return;
     }
     else{
-        return RESULTADO.innerText = POSIBLES_RESULTADOS[1], SCORE_USUARIO += 1, 
+        SCORE_USUARIO += 1;
+        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
         console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        return;
     }
 }
-
-// cuando es igual a 3 me deja apretar otra vez en PLAY
 function determinarGanador(USER_PLAY){  
-    PC_PLAY = jugadaPC();
+    jugadaPC();
     console.log(USER_PLAY + " " + PC_PLAY); 
     resultadoParcial();
     if(SCORE_PC == 3 || SCORE_USUARIO == 3){
@@ -96,7 +115,8 @@ function determinarGanador(USER_PLAY){
     }
     return;  
 }
-/////////// código robado :) /////////////////////////////////////
+PLAY_BUTTON.addEventListener("click", function(){determinarGanador(USER_PLAY)});
+/////////// Inicio de código robado :) /////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 let botonPrevio = null;
 const choise = document.getElementById("choise");
@@ -121,9 +141,4 @@ choise.addEventListener('click', event => {
 });
 ////////// fin de código robado /////////////////////////////////
 
-PLAY_BUTTON.addEventListener("click", function(){determinarGanador(USER_PLAY)});
-INPUT.addEventListener("input", errorName)
-BOTONES.forEach((boton) => {boton.addEventListener('click', (event) => eleccionJugador(event.target))});
-RESET_BUTTON.addEventListener("click", reset);
-CONTIUNUE_BUTTON.addEventListener("click", continuar);
 
