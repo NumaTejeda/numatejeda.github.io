@@ -13,18 +13,21 @@
             <label for="name">Nombre de usuario:</label>
             <input type="text" name="name" id="name" placeholder="Your name here..." autocomplete="name">
             <p id="error" style="display: none; color: red;">Campo obligatorio 👆</p>
-            <button id="start">Start</button>
+            <button id="continue" disabled>Continue...</button>
         </div>
         <div id="choise">
-            <button class="botones" id="piedra">
+            <button class="botones" id="piedra" disabled>
                 Piedra
             </button>
-            <button class="botones" id="papel">
+            <button class="botones" id="papel" disabled>
                 Papel
             </button>
-            <button class="botones" id="tijera">
+            <button class="botones" id="tijera" disabled>
                 Tijera
             </button>
+        </div>
+        <div>
+            <button id="play" disabled>Play</button>
         </div>
         <div id="pantalla">
             <p id="resultado"></p>

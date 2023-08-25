@@ -12,7 +12,8 @@ h3{
     display: flex;
     flex-direction: column;
     margin: 20px auto;
-    border: 2px dashed red;
+    border: 2px solid red;
+    box-sizing: 2px 2px 2px black;
     width: fit-content;
     max-width: 388px;
     min-width: 300px;
@@ -24,6 +25,9 @@ h3{
 }
 #info button{
     margin: 1vh 0; 
+}
+#play{
+    width: 100%;
 }
 #choise{
     display: flex;
@@ -42,9 +46,11 @@ h3{
     border: 1px solid green;
     height: 20vh;
     margin: 0 5px;
-    text-align: center;
 }
 #reset{
     display: none;
     width: 100%;
+}
+.active{
+    background-color: red;
 }
