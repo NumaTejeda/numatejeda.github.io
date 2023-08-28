@@ -1,5 +1,5 @@
 
-let PIEDRA = "Piedra", PAPEL = "Papel", TIJERA = "Tijera";
+let PIEDRA = "piedra", PAPEL = "papel", TIJERA = "tijera";
 let OPCIONES = [PIEDRA, PAPEL, TIJERA];
 const BOTONES = document.querySelectorAll('.botones');
 const ERROR = document.getElementById("error");
@@ -9,12 +9,12 @@ const CONTIUNUE_BUTTON = document.getElementById("continue");
 const RESULTADO = document.getElementById("resultado");
 const INPUT =  document.getElementById("name");
 const POSIBLES_RESULTADOS = ["Empate!", "Gana el usuario!", "Gana la computadora!"];
+
 let PC_PLAY;
 let SCORE_PC = 0;
 let SCORE_USUARIO = 0;
 let USER_NAME;
 let USER_PLAY;
-
 
 function jugadaPC(){
     PC_PLAY = OPCIONES[Math.floor(Math.random() * 3)];
@@ -34,18 +34,27 @@ function reset(){
 RESET_BUTTON.addEventListener("click", reset);
 
 function eleccionJugador(boton){
-    USER_PLAY = boton.innerText;
+    USER_PLAY = boton.id;
     PLAY_BUTTON.disabled = false;
     return USER_PLAY;
 }
 BOTONES.forEach((boton) => {boton.addEventListener('click', (event) => eleccionJugador(event.target))});
+
+// function eleccionJugador(boton){
+//     const userChoice = boton.innerText;
+//     console.log(userChoice);
+// }
+ 
+// BOTONES.forEach((boton) => {
+//    boton.addEventListener('click', (event) => eleccionJugador(event.target));
+// });
 
 function errorName(){
     USER_NAME = document.getElementById("name").value;
     const buscar = /[A-Za-z1-9]/;             
     let busqueda = buscar.test(USER_NAME);
     if(busqueda === true){
-        // USER_NAME = USER_NAME.trim();
+        USER_NAME = USER_NAME.trim();
         CONTIUNUE_BUTTON.disabled = false;
         return ERROR.style.display = "none";
     }
@@ -62,43 +71,37 @@ function continuar(){
 CONTIUNUE_BUTTON.addEventListener("click", continuar);
 
 function resultadoParcial(){
+    const TEXT = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
     if(PC_PLAY === USER_PLAY){
-        return  RESULTADO.innerText = "UPS! " + POSIBLES_RESULTADOS[0];
+        return  RESULTADO.innerText = TEXT + "UPS! " + POSIBLES_RESULTADOS[0];
     }
     else if(PC_PLAY === PAPEL &&  USER_PLAY === PIEDRA){
         SCORE_PC += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO); 
-        return;
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2];
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === PAPEL){
         SCORE_USUARIO += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`; 
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1]; 
         return;
     }
     else if(PC_PLAY === TIJERA && USER_PLAY === PAPEL){
         SCORE_PC += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`; 
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2]; 
         return;
     }  
     else if(PC_PLAY === PAPEL && USER_PLAY === TIJERA){
         SCORE_USUARIO += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1];
         return;
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === TIJERA){
         SCORE_PC += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[2] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2];
         return;
     }
     else{
         SCORE_USUARIO += 1;
-        RESULTADO.innerText = POSIBLES_RESULTADOS[1] + ` US: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
-        console.log("pc: " + SCORE_PC +"// us: " + SCORE_USUARIO);
+        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1];
         return;
     }
 }
@@ -107,15 +110,25 @@ function determinarGanador(USER_PLAY){
     console.log(USER_PLAY + " " + PC_PLAY); 
     resultadoParcial();
     if(SCORE_PC == 3 || SCORE_USUARIO == 3){
+        if(SCORE_PC == 3){
+            RESULTADO.innerText = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
+            Ganó la PC`;
+        }
+        else{
+            RESULTADO.innerText = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
+            Ganaste  ${USER_NAME}!!!`;
+        }
         BOTONES.forEach(boton => boton.disabled = true);
         botonPrevio.classList.remove('active');
         PLAY_BUTTON.disabled = true;
         RESET_BUTTON.style.display = "block";
+        
         return;
     }
     return;  
 }
 PLAY_BUTTON.addEventListener("click", function(){determinarGanador(USER_PLAY)});
+
 /////////// Inicio de código robado :) /////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 let botonPrevio = null;

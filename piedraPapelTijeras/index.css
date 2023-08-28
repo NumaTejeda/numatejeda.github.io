@@ -34,10 +34,17 @@ h3{
     justify-content: center;
     max-width: 364px;
 }
+img{
+    height: auto;
+    width: 100px;
+}
 .botones{
-    width: 17vw;
+    width: fit-content;
     min-width: 90px;
 }
+/* button:hover{
+    background-color: red;
+} */
 #choise button:nth-child(2){
     margin: 0 1vw;
 }
