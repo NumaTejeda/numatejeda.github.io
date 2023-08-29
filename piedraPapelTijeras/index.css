@@ -3,21 +3,29 @@
     margin: 0;
     padding: 5px;
 }
-
+#choise{
+    padding: 0;
+}
 h3{
     width: fit-content;
     margin: 0 auto;
+    color: white;
+}
+label{
+    color: white;
 }
 .box{
     display: flex;
     flex-direction: column;
+    background: linear-gradient(red, blue);
     margin: 20px auto;
     border: 2px solid red;
-    box-sizing: 2px 2px 2px black;
-    width: fit-content;
-    max-width: 388px;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 15px;
+    width: 60vw;
+    max-width: 380px;
     min-width: 300px;
-    min-height: 500px;
+    min-height: 200px;
 }
 #info{
     display: flex;
@@ -33,23 +41,27 @@ h3{
     display: flex;
     justify-content: center;
     max-width: 364px;
+    padding: 0 auto;
 }
 img{
+    display: none;
+    cursor: pointer;
     height: auto;
-    width: 100px;
-}
-.botones{
-    width: fit-content;
-    min-width: 90px;
-}
-/* button:hover{
-    background-color: red;
-} */
-#choise button:nth-child(2){
-    margin: 0 1vw;
+    min-width: 5vw;
+    border-radius: 50%;
+    border: 3px dashed white;
+    margin: 5px;
+}   
+img:hover{
+    box-shadow: 2px 2px 5px red;
+    border: 2px solid black;
+    transition: all 2000ms;
 }
 #pantalla{
     display: flex;
+    background-color: #b29dff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px blue;
     border: 1px solid green;
     height: 20vh;
     margin: 0 5px;
@@ -59,5 +71,21 @@ img{
     width: 100%;
 }
 .active{
-    background-color: red;
+    background-color: rgb(250, 246, 36);
+    border: 2px solid black;
+}
+#resultado{
+    margin: auto auto;
+    font-size: x-large;
+    text-align: center;
+}
+button{
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(56, 175, 255);
+}
+button:hover{
+    border: 2px solid black;
+    transition: all 4000ms;
 }

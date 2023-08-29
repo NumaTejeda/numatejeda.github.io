@@ -1,4 +1,3 @@
-
 let PIEDRA = "piedra", PAPEL = "papel", TIJERA = "tijera";
 let OPCIONES = [PIEDRA, PAPEL, TIJERA];
 const BOTONES = document.querySelectorAll('.botones');
@@ -8,20 +7,24 @@ const RESET_BUTTON = document.getElementById("reset");
 const CONTIUNUE_BUTTON = document.getElementById("continue");
 const RESULTADO = document.getElementById("resultado");
 const INPUT =  document.getElementById("name");
-const POSIBLES_RESULTADOS = ["Empate!", "Gana el usuario!", "Gana la computadora!"];
+const POSIBLES_RESULTADOS = ["Empate!", "Ganaste", "Gana la PC!"];
 
 let PC_PLAY;
 let SCORE_PC = 0;
 let SCORE_USUARIO = 0;
-let USER_NAME;
 let USER_PLAY;
+let USER_NAME;
 
+
+// retorna una ellecion al azar entre las opciones
 function jugadaPC(){
     PC_PLAY = OPCIONES[Math.floor(Math.random() * 3)];
     return PC_PLAY;
 };
+// resetea todo
 function reset(){
-    BOTONES.forEach(boton => boton.disabled = true);
+    document.getElementById("name").disabled = false;
+    BOTONES.forEach(boton => boton.style.display = "none");
     PLAY_BUTTON.disabled = true;
     RESET_BUTTON.style.display = "none";
     INPUT.value = "";
@@ -33,26 +36,21 @@ function reset(){
 }
 RESET_BUTTON.addEventListener("click", reset);
 
+// accedo al objeto donde se disparo el evento a traves de event.target y recupero su id guardandolo como la opcion elegida
 function eleccionJugador(boton){
     USER_PLAY = boton.id;
     PLAY_BUTTON.disabled = false;
     return USER_PLAY;
 }
+//agarra el boton y no la im++
 BOTONES.forEach((boton) => {boton.addEventListener('click', (event) => eleccionJugador(event.target))});
 
-// function eleccionJugador(boton){
-//     const userChoice = boton.innerText;
-//     console.log(userChoice);
-// }
- 
-// BOTONES.forEach((boton) => {
-//    boton.addEventListener('click', (event) => eleccionJugador(event.target));
-// });
-
+//capturo el value del input mientras se escribe, si está vacio muestra el error en el momento
+// y no habilita el boton de continuar
 function errorName(){
     USER_NAME = document.getElementById("name").value;
-    const buscar = /[A-Za-z1-9]/;             
-    let busqueda = buscar.test(USER_NAME);
+    const BUSCAR = /[A-Za-z1-9]/;             
+    let busqueda = BUSCAR.test(USER_NAME);
     if(busqueda === true){
         USER_NAME = USER_NAME.trim();
         CONTIUNUE_BUTTON.disabled = false;
@@ -63,63 +61,73 @@ function errorName(){
 }
 INPUT.addEventListener("input", errorName)
 
+// desbloquea las opciones
 function continuar(){
-    BOTONES.forEach(boton => boton.disabled = false);
+    document.getElementById("name").disabled = true;
+    BOTONES.forEach(boton => boton.style.display= "block");
     CONTIUNUE_BUTTON.disabled = true;
     return;
 }
 CONTIUNUE_BUTTON.addEventListener("click", continuar);
 
+//calcula el resultado de cada ronda
 function resultadoParcial(){
-    const TEXT = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
+    RESULTADO.innerText = `La pc eligió: ${PC_PLAY}
+    `;
     if(PC_PLAY === USER_PLAY){
-        return  RESULTADO.innerText = TEXT + "UPS! " + POSIBLES_RESULTADOS[0];
+        RESULTADO.innerText +="UPS! " + POSIBLES_RESULTADOS[0];
+        return SCORE_PC, SCORE_USUARIO;
     }
     else if(PC_PLAY === PAPEL &&  USER_PLAY === PIEDRA){
-        SCORE_PC += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2];
+        SCORE_PC++;
+        RESULTADO.innerText += POSIBLES_RESULTADOS[2];
+        return SCORE_PC;
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === PAPEL){
-        SCORE_USUARIO += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1]; 
-        return;
+        SCORE_USUARIO++;
+        RESULTADO.innerText += POSIBLES_RESULTADOS[1] +" "+ USER_NAME; 
+        return SCORE_USUARIO;
     }
     else if(PC_PLAY === TIJERA && USER_PLAY === PAPEL){
-        SCORE_PC += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2]; 
-        return;
+        SCORE_PC++;
+        RESULTADO.innerText += POSIBLES_RESULTADOS[2]; 
+        return SCORE_PC;
     }  
     else if(PC_PLAY === PAPEL && USER_PLAY === TIJERA){
-        SCORE_USUARIO += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1];
-        return;
+        SCORE_USUARIO++;
+        RESULTADO.innerText +=POSIBLES_RESULTADOS[1] +" "+ USER_NAME;
+        return SCORE_USUARIO;
     }
     else if(PC_PLAY === PIEDRA && USER_PLAY === TIJERA){
-        SCORE_PC += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[2];
-        return;
+        SCORE_PC++;
+        RESULTADO.innerText += POSIBLES_RESULTADOS[2];
+        return SCORE_PC;
     }
     else{
-        SCORE_USUARIO += 1;
-        RESULTADO.innerText = TEXT + POSIBLES_RESULTADOS[1];
-        return;
+        SCORE_USUARIO++;
+        RESULTADO.innerText += POSIBLES_RESULTADOS[1] +" "+ USER_NAME;
+        return SCORE_USUARIO;
     }
 }
+
+//ejecuta el resultado parcial y determina el ganador bloqueando todo las opciones y habilitando el bton reset
 function determinarGanador(USER_PLAY){  
     jugadaPC();
-    console.log(USER_PLAY + " " + PC_PLAY); 
     resultadoParcial();
+    const TEXT = `
+    ${USER_NAME}: ${SCORE_USUARIO} // PC: ${SCORE_PC}`;
+    RESULTADO.innerText += " " + TEXT;
     if(SCORE_PC == 3 || SCORE_USUARIO == 3){
+        BOTONES.forEach(boton => boton.style.display = "none");
         if(SCORE_PC == 3){
-            RESULTADO.innerText = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
+            RESULTADO.innerText = `${USER_NAME}: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
             Ganó la PC`;
         }
         else{
-            RESULTADO.innerText = `User: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
+            RESULTADO.innerText = `${USER_NAME}: ${SCORE_USUARIO} // PC: ${SCORE_PC} 
             Ganaste  ${USER_NAME}!!!`;
         }
-        BOTONES.forEach(boton => boton.disabled = true);
-        botonPrevio.classList.remove('active');
+        imgPrevio.classList.remove('active');
         PLAY_BUTTON.disabled = true;
         RESET_BUTTON.style.display = "block";
         
@@ -131,25 +139,25 @@ PLAY_BUTTON.addEventListener("click", function(){determinarGanador(USER_PLAY)});
 
 /////////// Inicio de código robado :) /////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-let botonPrevio = null;
+let imgPrevio = null;
 const choise = document.getElementById("choise");
 
 choise.addEventListener('click', event => {
-    //Verifica que el evento click haya sido sobre un button
-    const isButton = event.target.nodeName === 'BUTTON'; 
-    if (!isButton) {
-        return;      // Si no lo es devuelve la nada misma. En este caso los hijos de choise son todos botones.  
+    //Verifica que el evento click haya sido sobre un elemento <img>
+    const esIMG = event.target.nodeName === 'IMG'; 
+    if (!esIMG) {
+        return;      // Si no lo es devuelve la nada misma. En este caso los hijos de choise son todas etiquetas <img>.  
     }
     //target es el boton donde se hace click
     event.target.classList.add('active'); // agrega la clase .active 
 
-    //verifica que botonPrevio este vacio o no, en caso de no estarlo remueve la clase
-    if(botonPrevio !== null) {
-        botonPrevio.classList.remove('active');  // remueve la calse .active
+    //verifica que imgPrevio este vacio o no, en caso de no estarlo remueve la clase
+    if(imgPrevio !== null) {
+        imgPrevio.classList.remove('active');  // remueve la calse .active
     }
-    // guarda el botón donde se hizo click en la variable botonPrevio la cual sera chekeada
+    // guarda la imagen donde se hizo click en la variable imgPrevio la cual sera chekeada
     // en el proximo evento, de no ser null se removera la clase.
-    botonPrevio = event.target;
+    imgPrevio = event.target;
 
 });
 ////////// fin de código robado /////////////////////////////////

@@ -11,20 +11,15 @@
         <h3 id="title">Piedra Pepel o Tijeras.</h3>
         <div id="info">
             <label for="name">Nombre de usuario:</label>
-            <input type="text" name="name" id="name" placeholder="Your name here..." autocomplete="name">
-            <p id="error" style="display: none; color: red;">Campo obligatorio 👆</p>
+            <input type="text" name="name" id="name" placeholder="Your name here..." autocomplete="name" maxlength="15">
+            <p id="error" style="display: none; color:white;">Campo obligatorio 👆</p>
             <button id="continue" disabled>Continue...</button>
         </div>
+        <!--OPCIONES-->
         <div id="choise">
-            <button class="botones" id="piedra" disabled>
-                Piedra
-            </button>
-            <button class="botones" id="papel" disabled>
-                Papel
-            </button>
-            <button class="botones" id="tijera" disabled>
-                Tijera
-            </button>
+            <img src="./src/piedra.png" alt="" class="botones" id="piedra">
+            <img src="./src/tijera.png" alt="" class="botones" id="tijera">
+            <img src="./src/papel.png" alt="" class="botones" id="papel">
         </div>
         <div>
             <button id="play" disabled>Play</button>
